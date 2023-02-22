@@ -14,5 +14,36 @@ pipeline {
                 sh 'python3  Webhook/main.py'
             }
         }
+        stage('Unit tests') {
+            steps {
+                
+                echo 'Running unit tests'
+                sh 'python3  Webhook/main.py'
+            }
+        }
+        stage('depoly') {
+            steps {
+                
+                echo 'Deploying build'
+                sh 'python3  Webhook/main.py'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Always'
+        }
+        success {
+            echo 'Only on success'
+        }
+        failure {
+            echo 'Only on failure'
+        }
+        unstable {
+            echo 'Only if run is unstable'
+        }
+        changed {
+            echo 'Only if status changed'
+        }
     }
 }
